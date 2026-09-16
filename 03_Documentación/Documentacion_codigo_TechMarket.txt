@@ -1,0 +1,38 @@
+==================================================
+FUNCTION: CALCULAR_CATEGORIA
+==================================================
+
+Que problema resolvemos con calcular_categoria
+R: podemos categori los percentiles de cada nivel socioeconomico 
+dentro de los montos trabajados de cada uno de los clientes de la 
+base de datos 
+
+Que variables trabajamos 
+R: p_total_comprado, calcular_categoria
+
+Que tipo de dato recibe
+R: los datos vistos dentro del codigo son de ingresos de dinero 
+de manera INT 
+
+Que tipo de dato devuelve
+R: devuelve de manera VARCHAR2 la categoria de percentil
+
+Que condiciones utiliza
+R: la estructura de IF, con ELSIF, ELSE
+
+Que pasa con 700000
+R: devuelve la categoria gold
+
+Que pasa con 1500000
+R: devuelve la categoria platinum
+
+Por que usamos una Function
+R: usamos function para tener un bloque con una tarea especifica dentro
+de nuestro programa 
+
+==================================================*/
+FUNCTION: CALCULAR_BENEFICIO
+==================================================*/
+Que problema resolvemos con esta FUNCTION.
+R: Logramos conseguir la cantidad de porcentaje de beneficio segun la
+categoria que estemos usando segun la primera FUNCTION que hicimos.
