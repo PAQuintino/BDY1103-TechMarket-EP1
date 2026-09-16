@@ -1,0 +1,43 @@
+==================================================
+TRIGGER: TRG_AUDITORIA_BENEFICIOS
+==================================================
+
+Que problema resolvemos con trg_auditoria_beneficios
+R: Nos ayuda a guardar un historial de manera automatica. Cada vez que le damos un beneficio a un cliente, el sistema guarda solito un registro para saber quien lo recibio y cuando.
+
+Que variables trabajamos
+R: :NEW.id_bitacora, :NEW.categoria_cliente, :NEW.total_compras, USER, SYSDATE.
+
+En que momento se ejecuta
+R: Se activa solo apenas el sistema guarda un nuevo beneficio en la tabla bitacora_beneficios.
+
+Que accion realiza en la base de datos
+R: Agrega una nueva linea en la tabla auditoria_beneficios guardando la fecha, la persona que lo hizo y los datos del premio otorgado.
+
+Por que usamos un Trigger
+R: Lo usamos para no tener que estar anotando las cosas a mano. Asi nos aseguramos de que siempre quede una copia de respaldo sin que se nos olvide nada.
+
+==================================================
+BLOQUE PL/SQL: CONTROL_Y_EXCEPCIONES
+==================================================
+
+Que problema resolvemos con este Bloque PL/SQL
+R: Nos ayuda a revisar cuanto ha comprado un cliente en el mes y decidir si le corresponde o no un premio, mostrando un mensaje claro si algo sale mal.
+
+Que variables trabajamos
+R: v_id_cliente, v_id_sucursal, v_desde, v_hasta, v_nombre, v_cant_compras, v_total_monto.
+
+Que excepciones utiliza
+R: Usa la regla del sistema NO_DATA_FOUND (para avisar si un cliente no existe) y dos reglas propias: e_monto_insuficiente y e_parametro_invalido.
+
+Que condiciones utiliza
+R: Usa instrucciones IF, para revisar que la informacion no este vacia, que las fechas esten bien puestas y que el cliente haya sumado al menos $500.000.
+
+Que pasa con el Cliente 101
+R: Se revisan sus compras, se ve que supero los $500.000, se le asigna el nivel 'GOLD' con un 10% de premio y se guarda todo ordenadamente (Caso Exito).
+
+Que pasa con el Cliente 103
+R: El cliente si existe, pero como compro menos de $500.000, el programa detiene el proceso y muestra un aviso avisando que no le alcanza para el premio.
+
+Que pasa con el Cliente 999
+R: Como ese numero de cliente no existe en la lista de la tienda, el sistema salta de inmediato con un aviso diciendo que el usuario no fue encontrado.
