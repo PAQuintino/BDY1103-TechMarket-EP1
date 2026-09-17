@@ -1,0 +1,10 @@
+DOCUMENTACIÓN: EXCEPCIONES Y TRIGGER - MAX HERRERA
+
+1. INTEGRACIÓN DE EXCEPCIONES
+- Excepción Oracle (NO_DATA_FOUND): Se utiliza para atrapar el error cuando se consulta una sucursal que no existe en el sistema (Prueba P2). Evita que el programa se caiga abruptamente y protege la consistencia antes de intentar buscar ventas asociadas.
+- Excepciones de Usuario (ex_periodo_invalido, ex_sin_ventas): Creadas para proteger reglas del negocio. Garantizan que no se procesen rangos de fechas incongruentes (Prueba P3) y que no se ejecuten cálculos innecesarios para sucursales sin movimiento (Prueba P4). El riesgo que evitan es la corrupción de datos y el gasto de recursos en la base de datos por procesamientos vacíos.
+
+2. TRIGGER DE AUDITORÍA
+- Función: Se implementó el trigger 'trg_auditoria_beneficios' que se dispara automáticamente (AFTER INSERT OR UPDATE) sobre la tabla BITACORA_BENEFICIOS (Prueba P5).
+- Trazabilidad: Registra en la tabla AUDITORIA_BENEFICIOS qué usuario de BD realizó la acción, qué operación fue (INSERT/UPDATE) y cómo cambió la categoría y el total de compras del cliente.
+- Ventajas y Límites: Automatiza el seguimiento sin tener que modificar la lógica de los procedures. Sin embargo, como limitación o riesgo, si hay un volumen muy masivo de registros simultáneos, podría ralentizar el rendimiento de inserción. Una mejora futura sería auditar también los eventos DELETE.
