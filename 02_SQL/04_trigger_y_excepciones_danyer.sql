@@ -128,3 +128,41 @@ END;
 -- CONSULTAS DE VERIFICACION
 SELECT * FROM bitacora_beneficios;
 SELECT * FROM auditoria_beneficios;
+
+-- ============================================================
+-- PRUEBA EXCEPCIÓN PREDEFINIDA: NO_DATA_FOUND
+-- ============================================================
+
+DECLARE
+
+    v_cliente CLIENTE%ROWTYPE;
+
+BEGIN
+
+    -- Buscamos un cliente que NO existe
+    SELECT *
+    INTO v_cliente
+    FROM CLIENTE
+    WHERE id_cliente = 9999;
+
+    -- Esta línea no se ejecutará si no existe el cliente
+    DBMS_OUTPUT.PUT_LINE(
+        'Cliente encontrado: ' || v_cliente.nombre
+    );
+
+EXCEPTION
+
+    -- Excepción predefinida de Oracle
+    WHEN NO_DATA_FOUND THEN
+
+        DBMS_OUTPUT.PUT_LINE(
+            'NO_DATA_FOUND: El cliente 9999 no existe.'
+        );
+
+END;
+/
+
+-- ============================================================
+-- PRUEBA EXCEPCIÓN DEFINIDA POR EL USUARIO: PERÍODO INVÁLIDO
+-- ============================================================
+
