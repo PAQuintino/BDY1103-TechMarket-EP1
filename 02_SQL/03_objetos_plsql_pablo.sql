@@ -315,3 +315,8 @@ CREATE OR REPLACE PACKAGE BODY techmarket_beneficios AS
 
 END techmarket_beneficios;
 /
+
+--EJEMPLO CATEGORIAS
+SELECT calcular_categoria(250000) FROM dual;
+--EJEMPLO BENEFICIO
+SELECT calcular_beneficio(250000) FROM dual;
