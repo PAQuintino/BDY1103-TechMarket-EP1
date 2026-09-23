@@ -320,3 +320,13 @@ END techmarket_beneficios;
 SELECT calcular_categoria(250000) FROM dual;
 --EJEMPLO BENEFICIO
 SELECT calcular_beneficio(250000) FROM dual;
+
+--PROCEDURE
+BEGIN
+    procesar_beneficios(
+        10,
+        TO_DATE('01/08/2026', 'DD/MM/YYYY'),
+        TO_DATE('31/08/2026', 'DD/MM/YYYY')
+    );
+END;
+/
