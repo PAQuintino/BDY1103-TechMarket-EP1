@@ -166,3 +166,33 @@ END;
 -- PRUEBA EXCEPCIÓN DEFINIDA POR EL USUARIO: PERÍODO INVÁLIDO
 -- ============================================================
 
+DECLARE
+
+    v_fecha_inicio DATE := TO_DATE('01/09/2026', 'DD/MM/YYYY');
+    v_fecha_fin    DATE := TO_DATE('31/08/2026', 'DD/MM/YYYY');
+
+    ex_periodo_invalido EXCEPTION;
+
+BEGIN
+
+    -- Validamos que la fecha de inicio no sea posterior
+    -- a la fecha de término.
+    IF v_fecha_inicio > v_fecha_fin THEN
+        RAISE ex_periodo_invalido;
+    END IF;
+
+    DBMS_OUTPUT.PUT_LINE(
+        'Período válido.'
+    );
+
+EXCEPTION
+
+    WHEN ex_periodo_invalido THEN
+
+        DBMS_OUTPUT.PUT_LINE(
+            'EXCEPCIÓN DE USUARIO: El período es inválido. ' ||
+            'La fecha de inicio no puede ser posterior a la fecha de fin.'
+        );
+
+END;
+/
