@@ -330,3 +330,18 @@ BEGIN
     );
 END;
 /
+
+--PACKAGE
+
+SET SERVEROUTPUT ON;
+
+BEGIN
+
+    techmarket_beneficios.procesar_beneficios(
+        p_id_sucursal => 10,
+        p_fecha_desde => DATE '2026-08-01',
+        p_fecha_hasta => DATE '2026-08-31'
+    );
+
+END;
+/
